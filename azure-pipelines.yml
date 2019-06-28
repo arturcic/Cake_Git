@@ -15,4 +15,4 @@ steps:
     script: 'echo Hello!'
 - task: GitVersion@5
   inputs:
-    runtime: 'core'    
+    runtime: 'full'    
