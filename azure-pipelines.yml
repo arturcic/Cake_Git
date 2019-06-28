@@ -16,3 +16,7 @@ steps:
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
+- task: GitVersionNetCore@5
+  inputs:
+    updateAssemblyInfo: true
+    additionalArguments: '--runtime netcore'
