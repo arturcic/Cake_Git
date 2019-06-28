@@ -2,12 +2,33 @@
 # Start with a minimal pipeline that you can customize to build and deploy your code.
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
+strategy:
+    matrix:
+      'windows core':
+        IMAGE: 'windows-2019'
+        RUNTIME: 'core'
+      'windows full':
+        IMAGE: 'windows-2019'
+        RUNTIME: 'full'
+      'linux core':
+        IMAGE: 'ubuntu-latest'
+        RUNTIME: 'core'
+      'linux full':
+        IMAGE: 'ubuntu-latest'
+        RUNTIME: 'full'
+      'macos core':
+        IMAGE: 'macOS-latest'
+        RUNTIME: 'core'
+      'macos full':
+        IMAGE: 'macOS-latest'
+        RUNTIME: 'full'
+    maxParallel: 6
 
 trigger:
 - master
 
 pool:
-  vmImage: 'windows-2019'
+  vmImage: $(IMAGE)
 
 steps:
 - task: CmdLine@2
@@ -15,4 +36,4 @@ steps:
     script: 'echo Hello!'
 - task: GitVersion@5
   inputs:
-    runtime: 'full'    
+    runtime: $(RUNTIME)
