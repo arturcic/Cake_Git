@@ -10,6 +10,9 @@ pool:
   vmImage: 'windows-2019'
 
 steps:
-  - task: GitVersion@5
-    inputs:
-      preferBundledVersion: true
+- task: CmdLine@2
+  inputs:
+    script: 'echo Hello!'
+- task: GitVersion@5
+  inputs:
+    runtime: 'core'    
