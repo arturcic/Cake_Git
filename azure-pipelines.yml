@@ -1,7 +1,7 @@
 jobs:
 - job: generator
   steps:
-  - bash: echo "##vso[task.setVariable variable=legs;isOutput=true]{'a':{'myvar':'A'}, 'b':{'myvar':'B'}}"
+  - bash: echo "##vso[task.setVariable variable=legs;isOutput=true]{\"a\":{\"myvar\":\"A\"}, \"b\":{\"myvar\":\"B\"}}"
     name: mtrx
   # This expands to the matrix
   #   a:
