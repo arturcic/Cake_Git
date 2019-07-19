@@ -1,39 +1,16 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-strategy:
-    matrix:
-      'windows core':
-        IMAGE: 'windows-2019'
-        RUNTIME: 'core'
-      'windows full':
-        IMAGE: 'windows-2019'
-        RUNTIME: 'full'
-      'linux core':
-        IMAGE: 'ubuntu-latest'
-        RUNTIME: 'core'
-      'linux full':
-        IMAGE: 'ubuntu-latest'
-        RUNTIME: 'full'
-      'macos core':
-        IMAGE: 'macOS-latest'
-        RUNTIME: 'core'
-      'macos full':
-        IMAGE: 'macOS-latest'
-        RUNTIME: 'full'
-    maxParallel: 6
-
-trigger:
-- master
-
-pool:
-  vmImage: $(IMAGE)
-
-steps:
-- task: CmdLine@2
-  inputs:
-    script: 'echo Hello!'
-- task: GitVersion@5
-  inputs:
-    runtime: $(RUNTIME)
+jobs:
+- job: generator
+  steps:
+  - bash: echo "##vso[task.setVariable variable=legs;isOutput=true]{'a':{'myvar':'A'}, 'b':{'myvar':'B'}}"
+    name: mtrx
+  # This expands to the matrix
+  #   a:
+  #     myvar: A
+  #   b:
+  #     myvar: B
+- job: runner
+  dependsOn: generator
+  strategy:
+    matrix: $[ dependencies.generator.outputs['mtrx.legs'] ]
+  steps:
+  - script: echo $(myvar) # echos A or B depending on which leg is running
