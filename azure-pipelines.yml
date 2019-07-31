@@ -7,9 +7,8 @@ jobs:
     vmImage: 'Ubuntu 16.04'
 - job: macOS
   steps:
-  - task: Bash@3
+  - task: CmdLine@2
     inputs:
-      targetType: 'inline'
       script: |
         SYMLINK=5_18_1
         MONOPREFIX=/Library/Frameworks/Mono.framework/Versions/$SYMLINK
