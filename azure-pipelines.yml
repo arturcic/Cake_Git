@@ -1,16 +1,13 @@
 jobs:
-- job: generator
+- job: Linux
   steps:
-  - bash: echo "##vso[task.setVariable variable=legs;isOutput=true]{\"a\":{\"myvar\":\"A\"}, \"b\":{\"myvar\":\"B\"}}"
-    name: mtrx
-  # This expands to the matrix
-  #   a:
-  #     myvar: A
-  #   b:
-  #     myvar: B
-- job: runner
-  dependsOn: generator
-  strategy:
-    matrix: $[ dependencies.generator.outputs['mtrx.legs'] ]
+  - bash: mono --version
+    name: Linux
+  pool:
+    vmImage: 'Ubuntu 16.04'
+- job: macOS
   steps:
-  - script: echo $(myvar) # echos A or B depending on which leg is running
+  - bash: mono --version
+    name: macOS
+  pool:
+    vmImage: 'macOS-latest'
