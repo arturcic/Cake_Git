@@ -8,6 +8,8 @@ jobs:
 - job: macOS
   steps:
   - task: CmdLine@2
+    condition: eq( variables['Agent.OS'], 'Darwin' )
+    displayName: 'Select Mono version'
     inputs:
       script: |
         SYMLINK=5_18_1
