@@ -1,16 +1,16 @@
 jobs:
-# Start with a minimal pipeline that you can customize to build and deploy your code.	- job: generator
-# Add steps that build, run tests, deploy, and more:	  steps:
-# https://aka.ms/yaml	  - bash: echo "##vso[task.setVariable variable=legs;isOutput=true]{'a':{'myvar':'A'}, 'b':{'myvar':'B'}}"
-strategy:	    name: mtrx
-    matrix:	  # This expands to the matrix
-      'windows core':	  #   a:
-        IMAGE: 'windows-2019'	  #     myvar: A
-        RUNTIME: 'core'	  #   b:
-      'windows full':	  #     myvar: B
-        IMAGE: 'windows-2019'	- job: runner
-        RUNTIME: 'full'	  dependsOn: generator
-      'linux core':	  strategy:
-        IMAGE: 'ubuntu-latest'	    matrix: $[ dependencies.generator.outputs['mtrx.legs'] ]
-        RUNTIME: 'core'	  steps:
-      'linux full':	  - script: echo $(myvar) # echos A or B depending on which leg is running 
+- job: generator
+  steps:
+  - bash: echo "##vso[task.setVariable variable=legs;isOutput=true]{\"a\":{\"myvar\":\"A\"}, \"b\":{\"myvar\":\"B\"}}"
+    name: mtrx
+  # This expands to the matrix
+  #   a:
+  #     myvar: A
+  #   b:
+  #     myvar: B
+- job: runner
+  dependsOn: generator
+  strategy:
+    matrix: $[ dependencies.generator.outputs['mtrx.legs'] ]
+  steps:
+  - script: echo $(myvar) # echos A or B depending on which leg is running
