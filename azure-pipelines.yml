@@ -4,3 +4,4 @@ jobs:
   - task: GitVersion@5
     inputs:
       runtime: 'core'
+      useConfigFile: true
