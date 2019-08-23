@@ -5,3 +5,4 @@ jobs:
     inputs:
       runtime: 'core'
       useConfigFile: true
+      configFilePath: 'test.yml'
