@@ -1,16 +1,6 @@
 jobs:
-- job: generator
+- job: generator  
   steps:
-  - bash: echo "##vso[task.setVariable variable=legs;isOutput=true]{\"a\":{\"myvar\":\"A\"}, \"b\":{\"myvar\":\"B\"}}"
-    name: mtrx
-  # This expands to the matrix
-  #   a:
-  #     myvar: A
-  #   b:
-  #     myvar: B
-- job: runner
-  dependsOn: generator
-  strategy:
-    matrix: $[ dependencies.generator.outputs['mtrx.legs'] ]
-  steps:
-  - script: echo $(myvar) # echos A or B depending on which leg is running
+  - task: GitVersion@5
+    inputs:
+      runtime: 'core'
