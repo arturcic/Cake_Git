@@ -6,3 +6,6 @@ jobs:
       runtime: 'core'
       useConfigFile: true
       configFilePath: 'GitVersion.yml'
+  - task: CmdLine@2
+    inputs:
+      script: 'dotnet gitversion'
