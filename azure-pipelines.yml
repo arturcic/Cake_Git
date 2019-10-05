@@ -3,5 +3,4 @@ jobs:
   steps:
   - task: GitVersion@5
     inputs:
-      useConfigFile: true
-      configFilePath: 'GitVersion.yml'
+      versionSpec: '5.0.x'
