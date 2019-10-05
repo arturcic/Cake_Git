@@ -3,9 +3,5 @@ jobs:
   steps:
   - task: GitVersion@5
     inputs:
-      runtime: 'core'
       useConfigFile: true
       configFilePath: 'GitVersion.yml'
-  - task: CmdLine@2
-    inputs:
-      script: 'dotnet gitversion'
