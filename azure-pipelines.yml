@@ -16,7 +16,9 @@ steps:
       script: 'dotnet --info'
   - task: CmdLine@2
     inputs:
-      script: 'dotnet tool install gitversion.tool --tool-path gtool'
+      script: | 
+        dotnet tool install gitversion.tool --tool-path gtool
+        export DOTNET_ROOT="$(dirname "$(readlink "$(command -v dotnet)")")"
   - task: CmdLine@2  
     inputs:
       script: 'gtool/dotnet-gitversion'
