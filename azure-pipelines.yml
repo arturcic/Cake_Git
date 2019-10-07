@@ -13,9 +13,9 @@ pool:
   vmImage: $(imageName)
 
 steps: 
-  - task: CmdLine@2
-    inputs:
-      script: 'dotnet --info'
+  # - task: CmdLine@2
+  #   inputs:
+  #     script: 'dotnet --info'
   # - task: CmdLine@2
   #   inputs:
   #     script: dotnet tool install gitversion.tool --tool-path gtool
@@ -30,5 +30,5 @@ steps:
 
   - task: GitVersion@5
     inputs:
-      versionSpec: '>5.0.x'
+      versionSpec: '>5.0.0'
       includePrerelease: true
