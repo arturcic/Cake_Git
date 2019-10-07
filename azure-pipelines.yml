@@ -11,7 +11,6 @@ pool:
   vmImage: $(imageName)
 
 steps: 
-  - task: GitVersion@5
+  - task: CmdLine@2
     inputs:
-      versionSpec: '5.0.x'
-      includePrerelease: true
+      script: 'dotnet --info'
