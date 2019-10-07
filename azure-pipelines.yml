@@ -31,4 +31,4 @@ steps:
   - task: GitVersion@5
     inputs:
       versionSpec: '>5.0.2-beta1'
-      includePrerelease: false
+      includePrerelease: true
