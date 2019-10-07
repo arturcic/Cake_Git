@@ -17,12 +17,11 @@ steps:
   - task: CmdLine@2
     inputs:
       script: dotnet tool install gitversion.tool --tool-path gtool
-  - task: CmdLine@2
-    inputs:
-      script: export DOTNET_ROOT="$(dirname "$(readlink "$(command -v dotnet)")")"
   - task: CmdLine@2  
     inputs:
-      script: 'gtool/dotnet-gitversion'
+      script: |
+        export DOTNET_ROOT="$(dirname "$(readlink "$(command -v dotnet)")")"
+        gtool/dotnet-gitversion
   # - task: CmdLine@2
   #   inputs:
   #     script: 'dotnet tool install gitversion.tool --tool-path gtool'
