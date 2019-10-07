@@ -23,7 +23,6 @@ steps:
     inputs:
       script: |
         export DOTNET_ROOT="$(dirname "$(readlink "$(command -v dotnet)")")"
-        echo $DOTNET_ROOT
         gtool/dotnet-gitversion
   # - task: CmdLine@2
   #   inputs:
