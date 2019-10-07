@@ -16,18 +16,20 @@ steps:
   - task: CmdLine@2
     inputs:
       script: 'dotnet --info'
-  # - task: CmdLine@2
-  #   inputs:
-  #     script: dotnet tool install gitversion.tool --tool-path gtool
-  # - task: CmdLine@2  
-  #   inputs:
-  #     script: |
-  #       export DOTNET_ROOT="$(dirname "$(readlink "$(command -v dotnet)")")"
-  #       gtool/dotnet-gitversion
+  - task: CmdLine@2
+    inputs:
+      script: dotnet tool install gitversion.tool --tool-path gtool
+  - task: CmdLine@2  
+    inputs:
+      script: |
+        export DOTNET_ROOT="$(dirname "$(readlink "$(command -v dotnet)")")"
+        echo $DOTNET_ROOT
+        gtool/dotnet-gitversion
   # - task: CmdLine@2
   #   inputs:
   #     script: 'dotnet tool install gitversion.tool --tool-path gtool'
-  - task: GitVersion@5
-    inputs:
-      versionSpec: '5.0.x'
-      includePrerelease: true
+
+  # - task: GitVersion@5
+  #   inputs:
+  #     versionSpec: '5.0.x'
+  #     includePrerelease: true
