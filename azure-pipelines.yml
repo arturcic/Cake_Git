@@ -28,7 +28,12 @@ steps:
   #   inputs:
   #     script: 'dotnet tool install gitversion.tool --tool-path gtool'
 
-  - task: GitVersion@5
+  # - task: GitVersion@5
+  #   inputs:
+  #     versionSpec: '>5.0.2-beta1'
+  #     includePrerelease: true
+  
+  - task: UseGitVersion@5
     inputs:
       versionSpec: '>5.0.2-beta1'
       includePrerelease: true
