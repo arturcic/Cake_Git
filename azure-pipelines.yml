@@ -39,4 +39,4 @@ steps:
   - task: Bash@3
     inputs:
       targetType: 'inline'
-      script: 'uname -r'
+      script: 'uname -a'
