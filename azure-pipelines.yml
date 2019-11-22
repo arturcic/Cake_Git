@@ -33,10 +33,7 @@ steps:
   #     versionSpec: '>5.0.2-beta1'
   #     includePrerelease: true
   
-  - task: UseGitVersion@5
+  - task: SetupGitVersion@5
     inputs:
-      versionSpec: '5.*'
-  - task: Bash@3
-    inputs:
-      targetType: 'inline'
-      script: 'uname -a'
+      versionSpec: '5.1.2'
+  
