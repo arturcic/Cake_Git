@@ -37,3 +37,5 @@ steps:
     inputs:
       versionSpec: '5.1.2'
   - task: ExecuteGitVersion@5
+    name: gitversion
+  - bash: echo $[ dependencies['Generator'].outputs.gitversion ]
