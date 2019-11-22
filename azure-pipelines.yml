@@ -34,8 +34,8 @@ steps:
   #     includePrerelease: true
   
   - task: SetupGitVersion@5
+    displayName: Setup GitVersion
     inputs:
       versionSpec: '5.1.2'
   - task: ExecuteGitVersion@5
-    name: gitversion
-  - bash: echo $fullSemVer
+   displayName: Execute Gitversion
