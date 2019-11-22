@@ -38,4 +38,4 @@ steps:
     inputs:
       versionSpec: '5.1.2'
   - task: ExecuteGitVersion@5
-   displayName: Execute Gitversion
+    displayName: Execute Gitversion
